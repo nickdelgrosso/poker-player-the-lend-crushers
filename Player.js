@@ -12,10 +12,13 @@ class Player {
     var fold = 0;
 
     // pre flop
-    if (currentScore <= scoreFoldThreshold) {
-      bet(fold);
-    } else {
-      // @todo: throw if pot does not return a number?
+    if (game.bettingRound() === "pre flop"){
+      if (currentScore <= scoreFoldThreshold) {
+        bet(fold);
+      } else {
+        // @todo: throw if pot does not return a number?
+        bet(game.pot());
+    }} else {
       bet(game.pot());
     }
 
