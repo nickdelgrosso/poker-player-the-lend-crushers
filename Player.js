@@ -8,13 +8,18 @@ class Player {
   static betRequest(gameState, bet) {
     var game = new GameState(gameState);
     var currentScore = game.me().score();
-    var scoreFoldThreshold = 10;
+    var scoreFoldThreshold = 8;
+    var fold = 0;
 
-    if (currentScore < scoreFoldThreshold) {
-      bet(0);
+    // pre flop
+    if (currentScore <= scoreFoldThreshold) {
+      bet(fold);
     } else {
-      bet(1000);
+      // @todo: throw if pot does not return a number?
+      bet(game.pot());
     }
+
+     // post flop
   }
 
   static showdown(gameState) {
