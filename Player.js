@@ -7,7 +7,14 @@ class Player {
 
   static betRequest(gameState, bet) {
     var game = new GameState(gameState);
-    bet(1000);
+    var currentScore = game.me().score();
+    var scoreFoldThreshold = 10;
+
+    if (currentScore < scoreFoldThreshold) {
+      bet(0);
+    } else {
+      bet(1000);
+    }
   }
 
   static showdown(gameState) {
